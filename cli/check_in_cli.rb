@@ -42,13 +42,29 @@ def day_check_ins
   header
   list_days
   puts "Enter id of day to view attendance:"
-  day = Day.find_by(id: gets.chomp.to_i)
+  term = Term.find_current_term
+  day = Day.find_by(id: gets.chomp.to_i, term_id: term.id)
   whitespace
   puts "#{day.created_at.strftime("%m/%d/%Y")}"
   puts "========================"
   day.check_ins.each do |stamp|
       user = User.find_by(id: stamp.user_id)
       puts " #{user.name} - signed in #{stamp.created_at.strftime("at %I:%M%p")} "
+  end
+  whitespace
+end
+
+def user_check_ins
+  header
+  list_users
+  puts "Enter id of a student to view attendance:"
+  term = Term.find_current_term
+  user = User.find_by(id: gets.chomp.to_i, term_id: term.id)
+  whitespace
+  puts "#{user.name} Attendance"
+  puts "========================"
+  user.check_ins.each do |stamp|
+      puts "#{stamp.created_at.strftime("%m/%d/%Y")} signed in #{stamp.created_at.strftime("at %I:%M%p")} "
   end
   whitespace
 end
