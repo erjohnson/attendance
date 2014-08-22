@@ -6,4 +6,8 @@ class Term < ActiveRecord::Base
   def total_days
     self.days.count
   end
+
+  def total_students
+    self.users.count
+  end
 end
