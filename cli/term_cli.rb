@@ -4,8 +4,8 @@ def terms_menu
   puts "-----------------------"
   whitespace
   list_terms
-  puts "N > New Term"
-  puts "M > Main Menu"
+  puts "    N > New Term"
+  puts "    M > Main Menu"
   case gets.chomp.upcase
   when 'N'
     create_term
