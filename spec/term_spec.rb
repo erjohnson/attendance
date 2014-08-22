@@ -5,11 +5,11 @@ describe Term do
   it { should have_many :days }
   it { should have_many :check_ins }
 
-  describe '.find_current_term' do
+  describe '.current_term' do
     it 'returns the current term' do
       term1 = Term.create(season: 'Spring 2014')
       term2 = Term.create(season: 'Summer 2014', current_term: true)
-      expect(Term.find_current_term).to eq term2
+      expect(Term.current_term).to eq [term2]
     end
   end
 
