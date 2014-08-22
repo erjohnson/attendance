@@ -24,9 +24,12 @@ end
 
 def main_menu
   header
+  puts "    M > Mark Here!"
   puts "    S > Students Menu"
   puts "    T > Terms Menu"
   case gets.chomp.upcase
+  when 'M'
+    create_check_in
   when 'S'
     users_menu
   when 'T'
