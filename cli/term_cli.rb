@@ -5,9 +5,12 @@ def terms_menu
   whitespace
   list_terms
   puts "N > New Term"
+  puts "M > Main Menu"
   case gets.chomp.upcase
   when 'N'
     create_term
+  when 'M'
+    main_menu
   end
 end
 
@@ -36,7 +39,7 @@ def create_term
   whitespace
   puts "Enter the Day (ex: 7):"
   start_day = gets.chomp.to_i
-  start_date = Time.new(year, month, day)
+  start_date = Time.new(start_year, start_month, start_day)
   whitespace
   puts "Set Term End Date"
   puts "Enter the Year (ex: 2012):"
@@ -65,10 +68,10 @@ def create_term
     when 'Y'
       term.current_term = true
       term.save
-      main_menu
+      terms_menu
     when 'N'
       term.save
-      main_menu
+      terms_menu
     end
   when 'N'
     create_term
