@@ -13,7 +13,7 @@ def header
   puts "============================"
   current_term = Term.find_current_term
   if current_term != nil
-    puts "   #{current_term.season}  "
+    puts "  Current Term: #{current_term.season}  "
   end
   whitespace
 end
@@ -24,12 +24,9 @@ end
 
 def main_menu
   header
-  puts "    L > Terms Menu"
-  puts "    T > New Term"
+  puts "    T > Terms Menu"
   case gets.chomp.upcase
   when 'T'
-    create_term
-  when 'L'
     terms_menu
   end
 end

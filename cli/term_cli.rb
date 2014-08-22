@@ -1,3 +1,23 @@
+def terms_menu
+  header
+  puts "         Terms         "
+  puts "-----------------------"
+  whitespace
+  list_terms
+  puts "N > New Term"
+  case gets.chomp.upcase
+  when 'N'
+    create_term
+  end
+end
+
+def list_terms
+  Term.all.each do |term|
+    puts "#{term.id} | #{term.season} | #{term.start.strftime("%m/%d/%Y")} to #{term.end} | Length: #{term.total_days} days | #{term.total_students} students"
+  end
+  whitespace
+end
+
 def create_term
   header
   puts "    Create New Term    "
@@ -42,19 +62,4 @@ def create_term
   when 'N'
     create_term
   end
-end
-
-def list_terms
-  Term.all.each do |term|
-    puts "#{term.id} | #{term.season} | #{term.start.strftime("%m/%d/%Y")} to #{term.end} | Length: #{term.total_days} days | #{term.total_students} students"
-  end
-  whitespace
-end
-
-def terms_menu
-  header
-  puts "         Terms         "
-  puts "-----------------------"
-  whitespace
-  list_terms
 end
