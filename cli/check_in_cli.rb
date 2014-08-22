@@ -21,7 +21,7 @@ def create_check_in
   term = Term.find_current_term
   user = User.find_or_create_by(name: gets.chomp, term_id: term.id)
   t = Time.now()
-  day = Day.find_or_create_by(created_at: Time.new(t.year, t.month, t.day), term_id: term.id)
+  day = Day.find_or_create_by(created_at: Time.now.localtime.beginning_of_day, term_id: term.id)
   check_in = CheckIn.create(day_id: day.id, user_id: user.id, term_id: term.id)
   whitespace
   puts "#{user.name} signed in #{check_in.created_at.strftime("at %I:%M%p")}"
