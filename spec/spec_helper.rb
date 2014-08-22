@@ -9,5 +9,9 @@ ActiveRecord::Base.establish_connection(test_configuration)
 RSpec.configure do |config|
   config.formatter = 'doc'
   config.before(:each) do
+    Term.all.each { |a| a.destroy }
+    User.all.each { |a| a.destroy }
+    Day.all.each { |a| a.destroy }
+    CheckIn.all.each { |a| a.destroy }
   end
 end
