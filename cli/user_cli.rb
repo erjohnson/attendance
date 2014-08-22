@@ -5,10 +5,13 @@ def users_menu
   whitespace
   list_users
   puts "    N > New Student"
+  puts "    R > Remove Student"
   puts "    M > Main Menu"
   case gets.chomp.upcase
   when 'N'
     create_user
+  when 'R'
+    delete_user
   when 'M'
     main_menu
   end
@@ -37,6 +40,20 @@ def create_user
   User.create(name: name, term_id: term_num).valid?
   whitespace
   puts "#{name} has been added!"
+  sleep 0.5
+  users_menu
+end
+
+def delete_user
+  header
+  puts "    Remove A Student    "
+  puts "------------------------"
+  whitespace
+  list_users
+  puts "Enter the number of the student to remove:"
+  user = User.find_by(id: gets.chomp.to_i)
+  user.destroy
+  puts "Student removed!"
   sleep 0.5
   users_menu
 end
