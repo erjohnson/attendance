@@ -23,7 +23,7 @@ def create_term
   puts "N > No"
   case gets.chomp.upcase
   when 'Y'
-    term = Term.create(season: season, start: time)
+    term = Term.new(season: season, start: time)
     puts "#{term.season} created!"
     whitespace
     sleep 0.5
@@ -32,9 +32,11 @@ def create_term
     puts "N > No"
     case gets.chomp.upcase
     when 'Y'
-      @current_term = term
+      term.current_term = true
+      term.save
       main_menu
     when 'N'
+      term.save
       main_menu
     end
   when 'N'
