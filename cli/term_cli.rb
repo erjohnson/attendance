@@ -33,11 +33,22 @@ def create_term
     case gets.chomp.upcase
     when 'Y'
       @current_term = term
-      menu
+      main_menu
     when 'N'
-      menu
+      main_menu
     end
   when 'N'
     create_term
   end
+end
+
+def list_terms
+  Term.all.each do |term|
+    puts "#{term.season} | #{term.start.strftime("%m/%d/%Y")} to #{term.end} | Length: #{term.total_days} days | #{term.total_students} students"
+  end
+end
+
+def terms_menu
+  header
+  list_terms
 end

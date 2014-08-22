@@ -21,14 +21,16 @@ def whitespace
   puts "\n"
 end
 
-def menu
+def main_menu
   header
-  puts "    M > Mark Yourself Here"
+  puts "    L > Terms Menu"
   puts "    T > New Term"
   case gets.chomp.upcase
   when 'T'
     create_term
+  when 'L'
+    terms_menu
   end
 end
 
-menu
+main_menu
