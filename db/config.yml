@@ -1,0 +1,7 @@
+development:
+  adapter: postgresql
+  database: attendance_development
+
+test:
+  adapter: postgresql
+  database: attendance_test
