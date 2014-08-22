@@ -11,7 +11,7 @@ def header
   system 'clear'
   puts "Attendance Prototype    "
   puts "============================"
-  current_term = Term.find_current_term
+  current_term = Term.current_term[0]
   if current_term != nil
     puts "Current Term: #{current_term.season}  "
   end
