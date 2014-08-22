@@ -11,6 +11,9 @@ def header
   system 'clear'
   puts "    Attendance Prototype    "
   puts "============================"
+  if @current_term != nil
+    puts "   #{@current_term.season}  "
+  end
   whitespace
 end
 

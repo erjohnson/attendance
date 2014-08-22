@@ -25,7 +25,19 @@ def create_term
   when 'Y'
     term = Term.create(season: season, start: time)
     puts "#{term.season} created!"
+    whitespace
     sleep 0.5
-    menu
+    puts "Do you want to set #{term.season} as the current term?"
+    puts "Y > Yes"
+    puts "N > No"
+    case gets.chomp.upcase
+    when 'Y'
+      @current_term = term
+      menu
+    when 'N'
+      menu
+    end
+  when 'N'
+    create_term
   end
 end
