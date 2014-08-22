@@ -4,15 +4,24 @@ def check_ins_menu
 end
 
 def list_check_ins
-  Day.all.each do |day|
-    puts "#{day.created_at.strftime("%m/%d/%Y")}"
-    puts "========================"
-    day.check_ins.each do |stamp|
+  term = Term.find_current_term
+  day = Day.find_or_create_by(created_at: Time.now.localtime.beginning_of_day, term_id: term.id)
+  puts "#{day.created_at.strftime("%m/%d/%Y")}"
+  puts "========================"
+  day.check_ins.each do |stamp|
       user = User.find_by(id: stamp.user_id)
       puts " #{user.name} - signed in #{stamp.created_at.strftime("at %I:%M%p")} "
-    end
   end
   whitespace
+  puts "D > View Attendance by Day"
+  puts "S > VIew Attendance by Student"
+  case gets.chomp.upcase
+  when 'D'
+    day_check_ins
+  when 'S'
+    user_check_ins
+  end
+
 end
 
 def create_check_in
@@ -27,4 +36,19 @@ def create_check_in
   puts "#{user.name} signed in #{check_in.created_at.strftime("at %I:%M%p")}"
   sleep 1
   main_menu
+end
+
+def day_check_ins
+  header
+  list_days
+  puts "Enter id of day to view attendance:"
+  day = Day.find_by(id: gets.chomp.to_i)
+  whitespace
+  puts "#{day.created_at.strftime("%m/%d/%Y")}"
+  puts "========================"
+  day.check_ins.each do |stamp|
+      user = User.find_by(id: stamp.user_id)
+      puts " #{user.name} - signed in #{stamp.created_at.strftime("at %I:%M%p")} "
+  end
+  whitespace
 end
