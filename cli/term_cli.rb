@@ -44,11 +44,15 @@ end
 
 def list_terms
   Term.all.each do |term|
-    puts "#{term.season} | #{term.start.strftime("%m/%d/%Y")} to #{term.end} | Length: #{term.total_days} days | #{term.total_students} students"
+    puts "#{term.id} | #{term.season} | #{term.start.strftime("%m/%d/%Y")} to #{term.end} | Length: #{term.total_days} days | #{term.total_students} students"
   end
+  whitespace
 end
 
 def terms_menu
   header
+  puts "         Terms         "
+  puts "-----------------------"
+  whitespace
   list_terms
 end
